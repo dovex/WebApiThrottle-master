@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import namespace="urn:schemas-microsoft-com:asm.v1" />
+  <xs:element name="configuration">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element name="configSections">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="section">
+                <xs:complexType>
+                  <xs:attribute name="name" type="xs:string" use="required" />
+                  <xs:attribute name="type" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="appSettings" />
+        <xs:element name="throttlePolicy">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="rules">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="policyType" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="entry" type="xs:string" use="required" />
+                        <xs:attribute name="limitPerSecond" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="limitPerMinute" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="limitPerHour" type="xs:unsignedByte" use="optional" />
+                        <xs:attribute name="limitPerDay" type="xs:unsignedByte" use="optional" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="whitelists">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="add">
+                      <xs:complexType>
+                        <xs:attribute name="policyType" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="entry" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+            <xs:attribute name="limitPerSecond" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="limitPerMinute" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="limitPerHour" type="xs:unsignedByte" use="required" />
+            <xs:attribute name="limitPerDay" type="xs:unsignedShort" use="required" />
+            <xs:attribute name="limitPerWeek" type="xs:unsignedShort" use="required" />
+            <xs:attribute name="ipThrottling" type="xs:boolean" use="required" />
+            <xs:attribute name="clientThrottling" type="xs:boolean" use="required" />
+            <xs:attribute name="endpointThrottling" type="xs:boolean" use="required" />
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.web">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="compilation">
+                <xs:complexType>
+                  <xs:attribute name="debug" type="xs:boolean" use="required" />
+                  <xs:attribute name="targetFramework" type="xs:decimal" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="httpRuntime">
+                <xs:complexType>
+                  <xs:attribute name="targetFramework" type="xs:decimal" use="required" />
+                </xs:complexType>
+              </xs:element>
+              <xs:element name="customErrors">
+                <xs:complexType>
+                  <xs:attribute name="mode" type="xs:string" use="required" />
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.webServer">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="handlers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="remove">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                    <xs:element name="add">
+                      <xs:complexType>
+                        <xs:attribute name="name" type="xs:string" use="required" />
+                        <xs:attribute name="path" type="xs:string" use="required" />
+                        <xs:attribute name="verb" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="preCondition" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="runtime">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element xmlns:q1="urn:schemas-microsoft-com:asm.v1" ref="q1:assemblyBinding" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="system.codedom">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="compilers">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element maxOccurs="unbounded" name="compiler">
+                      <xs:complexType>
+                        <xs:attribute name="language" type="xs:string" use="required" />
+                        <xs:attribute name="extension" type="xs:string" use="required" />
+                        <xs:attribute name="type" type="xs:string" use="required" />
+                        <xs:attribute name="warningLevel" type="xs:unsignedByte" use="required" />
+                        <xs:attribute name="compilerOptions" type="xs:string" use="required" />
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>
